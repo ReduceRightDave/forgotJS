@@ -1,0 +1,19 @@
+{
+  "name": "forgotjs",
+  "version": "1.0.0",
+  "description": "Notes in JavaScript.",
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "remark-parse": "^5.0.0",
+    "remark-vdom": "^6.0.0",
+    "unified": "^7.0.0",
+    "vdom-query": "^1.1.0"
+  },
+  "scripts": {
+    "test": "jest && node test/test-readme.js",
+    "test-readme": "node test/test-readme.js",
+    "verify-test-generation": "jest"
+  },
+  "author": "Dave C",
+  "license": "ISC"
+}

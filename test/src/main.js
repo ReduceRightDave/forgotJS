@@ -11,6 +11,13 @@ const getCodeWithTests = require('./getCodeWithTests.js');
 //Make assert() available Function(  here  )()
 global.assert = require('assert').strict;
 
+function runCode(code) {
+    const consLog = console.log;
+    console.log = function(){};
+    Function(`"use strict"; ${code}`)();
+    console.log = consLog;
+}
+
 function main(headings, codeElements, callback) {
 
     for (let i = 0, length = headings.length; i < length; i++) {
@@ -20,10 +27,7 @@ function main(headings, codeElements, callback) {
         
         //Let the Node compiler check the snippet for errors
         try {
-            const consLog = console.log;
-            console.log = function(){};
-            Function(`"use strict"; ${codeSnippet}`)();
-            console.log = consLog;
+            runCode(codeSnippet);
         } catch (error) {
             return callback(false, heading, error.name, error.message);
         }
@@ -33,10 +37,7 @@ function main(headings, codeElements, callback) {
 
         //Run the tests
         try {
-            const consLog = console.log;
-            console.log = function(){};
-            Function(`"use strict"; ${codeWithTests}`)();
-            console.log = consLog;
+            runCode(codeWithTests);
         } catch (error) {
             /*  If we get this far then any SyntaxError must be a //commentValue
                 in the wrong place eg 

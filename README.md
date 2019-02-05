@@ -549,8 +549,23 @@ let otherLib = {
 myLibrary.myVar !== otherLib.myVar;
 ```
 
+## Get a primitive from an object
 
+```javascript
+//JS invokes valueOf() when coming across an object where a primitive value is expected
 
+let ob = {
+    //toString also works
+    valueOf() {  
+        return 2;
+    }
+}
+2 * ob === 4
+
+//Going the opposite way, you can make objects from some primitives with e.g.
+const s = new String('my string')
+//but it's generally pointless.
+```
 
 ## Missing keys
 

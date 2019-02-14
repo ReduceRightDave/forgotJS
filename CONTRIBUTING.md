@@ -57,12 +57,13 @@ if (a === b) { //42
 ```
 
 
+## Scripts
 
 On pull request, along with the tests above, the routines that generate these 
 tests are tested (`yarn test` as below).
 
 To run the tests locally, [NodeJS](http://nodejs.org) and [Yarn](http://yarnpkg.com) 
-are required.
+are required. CircleCI is configured to run Node 10.12.0.
 
 Available scripts:
 * `yarn test-readme` tests README.md

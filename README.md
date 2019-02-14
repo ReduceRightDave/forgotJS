@@ -45,7 +45,7 @@ result === 'I am selected because strict equality'
 ## Why use isNaN() to check for the value NaN?
 
 ```javascript
-//Because NaN (the invalid number value) doesn't equal itself
+//Because according to == and ===, NaN (the invalid number value) doesn't equal itself
 
 let a = NaN
 a != NaN
@@ -60,9 +60,6 @@ Number.isNaN(a)
 string to a number that won't convert. */
 Number.isNaN(parseInt('this is not a number'))
 Number.isNaN(Number('wont work either'))
-
-//Although
-Number('') === 0
 ```
 
 
@@ -423,7 +420,7 @@ typeof false === 'boolean'
 typeof 1 === 'number'
 typeof NaN === 'number'
 typeof 'foo' === 'string'
-typeof `see later for this string syntax` === 'string'
+typeof `baz` === 'string'
 typeof {} === 'object'
 typeof new Date() === 'object'
 typeof Number === 'function'
@@ -682,6 +679,7 @@ log.includes('two: to') === true
 const ob = {removeThis: 'gonna be gone'}
 delete ob.removeThis
 'removeThis' in ob === false
+ob //{}
 
 /* N.B. if the object inherited properties from another object, including one 
 called removeThis, it would now be accessible. */
@@ -769,9 +767,40 @@ Object.keys(a) //['0', '1', '2']
 ```
 
 
+## Arrays have functional programming-style methods
+
+```javascript
+const nums = [4,3,2,0]
+
+//map() applies a function to each element to produce a new array
+const square = function(x) {return x * x}
+nums.map(square) //[16,9,4,0]
+const roots = [16,9].map(Math.sqrt)
+roots //[4,3]
+
+/* filter() selects which elements to add to a new array 
+You supplying a predicate function */
+nums.filter(x => x > 2) //[4,3]
+//Return true to keep the element, false otherwise 
+
+//If the predicate function return value isn't boolean, its truthyness is used
+nums.filter(x => x) //[4,3,2]
+//because
+!Boolean(0)
+
+//some() is like Python's any() -does any element pass the test?
+nums.some(x => x > 2) //true
+
+//Similarly, every() is like Python's all() -do all elements pass the test?
+
+/* reduce() produces a single value from an array, 
+according to the supplied reducer function */
+nums.reduce((accumulator, currentValue) => accumulator + currentValue) //9
+```
 
 
-## Length doesn't count
+
+## Array length doesn't count
 
 ```javascript
 /* The length property of arrays is the index of the last element + 1, rather than
@@ -779,6 +808,11 @@ the total number of elements. */
 const arr = ['a']
 arr[100] = 'b'
 arr.length === 101
+
+//Setting length to truncate an array
+const nums = [1,2,3,4,5,6,7]
+nums.length = 2
+nums //[1,2]
 ```
 
 
@@ -898,19 +932,21 @@ rest //[3, 4]
 ## Spread out an array (or any iterable)...
 
 ```javascript
-//The spread syntax can roll things out of an array
+//The spread syntax can roll elements out of an array
 [1, 2, ...[3, 4]] //[1, 2, 3, 4]
 
-//and roll things out of an array just like apply() does
+//and roll arguments out of an array just like apply() does
 function sum(a, b, c) {
-  arguments[3] === 'a';
   return a+b+c;
 }
-sum.apply(null, [1, 2, 3, 'a']) === sum(...[1, 2, 3, 'a'])
+sum.apply(null, [1, 2, 3]) === 6
+sum(...[1, 2, 3]) === 6
 
-//Also works with strings
+//Also works with strings because they are iterable
 sum(...'zzza') === 'zzz'
 Math.min(...'321') === 1
+const split = [...'abc']
+split //['a', 'b', 'c']
 ```
 
 

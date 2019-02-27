@@ -655,19 +655,39 @@ ob.hasOwnProperty('toString') === false
 ```javascript
 /* Can enumerate the properties of an object (including inherited properties) 
 with for...in */
-let log = ''
+
+let output = ''
 const ob = {
     one: 'wun',
     two: 'to'
 }
 for (const key in ob) {
-    log += `${ key }: ${ ob[key] } `
+    output += `${ key }: ${ ob[key] } `
 }
 //for...in does not guarantee property order
-log.includes('one: wun') === true
-log.includes('two: to') === true
+output.includes('one: wun') === true
+output.includes('two: to') === true
 
 //See also Object.keys() and Object.getOwnPropertyNames()
+```
+
+## Not in but of
+
+```javascript
+//for...of loops over iterables -eg strings, arrays
+
+let output = ''
+for (const char of 'Dave rules') {
+    output += char
+}
+output === 'Dave rules'
+
+const bangs = Array(3).fill('!')
+for (const el of bangs) output += el
+output //Dave rules!!!
+
+//Of course a better way would be
+output += bangs.join('') //Dave rules!!!!!!
 ```
 
 
@@ -757,13 +777,16 @@ In JS, a library like Lowdash can compare object contents. */
 
 
 
-## Arrays Are Fancy Objects
+## Arrays aren't arrays, they're just fancy objects
 
 ```javascript
-let a = ['a', 'b', 'c']
-Object.keys(a) //['0', '1', '2']
+let chars = ['a', 'b', 'c']
+//Arrays have keys just like objects, but they're the indices
+Object.keys(chars) //['0', '1', '2']
 
-//TODO
+let words = ['spiffing', 'jolly', 'fellow']
+//Can give the array a property
+words.language = 'English'
 ```
 
 
@@ -779,7 +802,7 @@ const roots = [16,9].map(Math.sqrt)
 roots //[4,3]
 
 /* filter() selects which elements to add to a new array 
-You supplying a predicate function */
+You supply a predicate function */
 nums.filter(x => x > 2) //[4,3]
 //Return true to keep the element, false otherwise 
 
@@ -796,11 +819,13 @@ nums.some(x => x > 2) //true
 /* reduce() produces a single value from an array, 
 according to the supplied reducer function */
 nums.reduce((accumulator, currentValue) => accumulator + currentValue) //9
+
+//See also forEach()
 ```
 
 
 
-## Array length doesn't count
+## Length doesn't count
 
 ```javascript
 /* The length property of arrays is the index of the last element + 1, rather than

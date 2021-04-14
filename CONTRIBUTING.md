@@ -25,6 +25,7 @@ becomes
 assert(isNaN(x));
 ```
 
+## Comment Values
 
 Comments starting with // on the same line as code should display the value of the 
 preceeding expression. What you might call *comment values*:
@@ -48,6 +49,7 @@ becomes
 assert.deepStrictEqual(a, [1,2,3]);
 ```
 
+Comment values should be single, valid literals, on one line. They can be `true`, `false`, `null`, `undefined`, number, string, regex literal, object literal, array literal or function. An `InvalidCommentValueError` may otherwise be thrown.
 
 Because of comment values, there is a restriction on where // comments can be placed. 
 Eg this generates an `ImproperlyPlacedCommentError`:
@@ -84,12 +86,13 @@ becomes
 ```javascript
 assert.strictEqual(isNaN(1), 'foo');
 ```
+Comment values have the highest precedence, then equality operators, followed by is-functions (eg isNaN).
 
 
 ## Todos
 
-* The tests should check the structure of the markdown
+* Test relational operators 
+* Test to check the structure of the markdown
 * Where comments display exceptions, add tests
-
-
-
+* Allow multi-line expressions
+* Allow for symbols

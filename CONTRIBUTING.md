@@ -30,9 +30,9 @@ Comments starting with // on the same line as code should display the value of t
 preceeding expression. What you might call *comment values*:
 
 ```javascript
-x //baz
+x //'baz'
 ```
-becomes
+becomes something like
 ```javascript
 assert.strictEqual(x, 'baz');
 ```

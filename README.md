@@ -6,7 +6,7 @@ Semicolons tend to be reserved for multi-line code examples.
 
 Based on material by Tony Alicea, Douglas Crockford and Kyle Simpson.
 
-See CONTRIBUTING.md for a description of the automated tests.
+Automated tests check the code snippets -see CONTRIBUTING.md for details.
 
 Strict mode is assumed for all snippets.
 
@@ -29,7 +29,7 @@ null == undefined
 let result;
 switch (1) {
     case '1': 
-        result = 'I\'m not selected because no coercion';
+        result = 'Not selected because no coercion';
         break;
     case 1:
         result = 'I am selected because strict equality';
@@ -684,10 +684,10 @@ output === 'Dave rules'
 
 const bangs = Array(3).fill('!')
 for (const el of bangs) output += el
-output //Dave rules!!!
+output //'Dave rules!!!'
 
 //Of course a better way would be
-output += bangs.join('') //Dave rules!!!!!!
+output += bangs.join('') //'Dave rules!!!!!!'
 ```
 
 
@@ -1067,7 +1067,7 @@ f()() === 1
 (function(s) {
   (function() {
     (function() {
-      s; //foo
+      s; //'foo'
     })();
   })();
 })('foo');

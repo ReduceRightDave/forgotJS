@@ -1,7 +1,7 @@
 # Document heading
 Foo intro
 
-## Comment value where it shouldn't be
+## Comment where it shouldn't be
 
 ```javascript
 

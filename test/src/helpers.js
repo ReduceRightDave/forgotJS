@@ -19,8 +19,24 @@ function removeWholeLineDoubleSlashComments(lines) {
     return lines.filter(line => !/^\/\/.*/.test(line));
 }
 
+class InvalidCommentValueError extends Error {
+    constructor(message) {
+      super(message);
+      this.name = "InvalidCommentValueError";
+    }
+}
+
+class UnsupportedFeatureError extends Error {
+    constructor(message) {
+      super(message);
+      this.name = "UnsupportedFeatureError";
+    }
+}
+
 module.exports = {
     removeMultiLineComments,
     splitIntoLines,
-    removeWholeLineDoubleSlashComments
+    removeWholeLineDoubleSlashComments,
+    InvalidCommentValueError,
+    UnsupportedFeatureError
 };

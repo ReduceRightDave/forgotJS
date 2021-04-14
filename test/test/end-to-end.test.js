@@ -1,6 +1,6 @@
 "use strict";
 
-const checkSyntaxAddAndRunTests = require('../src/main.js');
+const checkSyntaxAndRunTests = require('../src/main.js');
 
 const pathToMarkdowns = 'test/test/markdowns/';
 
@@ -13,20 +13,20 @@ test('No errors', done => {
         done();
     }
   
-    checkSyntaxAddAndRunTests(`${pathToMarkdowns}no-errors1.md`, complete);
+    checkSyntaxAndRunTests(`${pathToMarkdowns}no-errors1.md`, complete);
 });
 
-test('Comment value where it shouldn\'t be', done => {
+test('Comment where it shouldn\'t be', done => {
     function complete(succeeded, snippetHeading, errorName, message) {
-        const expectedMessage = `Inline comment not allowed here`;
-        expect(snippetHeading).toBe('Comment value where it shouldn\'t be');
-        expect(errorName).toBe('ImproperlyPlacedCommentError');
+        const expectedMessage = 'Inline comment not allowed here -check that first.\n(It\'s also possible that the test generation code is broken)';
+        expect(snippetHeading).toBe('Comment where it shouldn\'t be');
+        expect(errorName).toBe('SyntaxError: Probably ImproperlyPlacedCommentError');
         expect(message).toBe(expectedMessage);
         expect(succeeded).toBe(false);
         done();
     }
   
-    checkSyntaxAddAndRunTests(`${pathToMarkdowns}comment-placement-error1.md`, complete);
+    checkSyntaxAndRunTests(`${pathToMarkdowns}comment-placement-error1.md`, complete);
 });
 
 test('Syntax error', done => {
@@ -37,7 +37,7 @@ test('Syntax error', done => {
         done();
     }
   
-    checkSyntaxAddAndRunTests(`${pathToMarkdowns}syntax-error1.md`, complete);
+    checkSyntaxAndRunTests(`${pathToMarkdowns}syntax-error1.md`, complete);
 });
 
 describe('Assertion errors', () => {
@@ -52,7 +52,7 @@ describe('Assertion errors', () => {
             done();
         }
     
-        checkSyntaxAddAndRunTests(`${pathToMarkdowns}assertion-error1.md`, complete);
+        checkSyntaxAndRunTests(`${pathToMarkdowns}assertion-error1.md`, complete);
     });
 
     test('assertion-error2.md', done => {
@@ -65,7 +65,7 @@ describe('Assertion errors', () => {
             done();
         }
     
-        checkSyntaxAddAndRunTests(`${pathToMarkdowns}assertion-error2.md`, complete);
+        checkSyntaxAndRunTests(`${pathToMarkdowns}assertion-error2.md`, complete);
     });
 
     test('assertion-error3.md', done => {
@@ -78,6 +78,22 @@ describe('Assertion errors', () => {
             done();
         }
     
-        checkSyntaxAddAndRunTests(`${pathToMarkdowns}assertion-error3.md`, complete);
+        checkSyntaxAndRunTests(`${pathToMarkdowns}assertion-error3.md`, complete);
+    });
+});
+
+describe('Comment value errors', () => {
+
+    test('invalid-commentvalue-error1.md', done => {
+        function complete(succeeded, snippetHeading, errorName, message) {
+            const expectedMessage = `x //myVariable --> Comment values should be valid literals`;
+            expect(snippetHeading).toBe('Comment values should be valid literals');
+            expect(errorName).toBe('InvalidCommentValueError');
+            expect(message).toBe(expectedMessage);
+            expect(succeeded).toBe(false);
+            done();
+        }
+    
+        checkSyntaxAndRunTests(`${pathToMarkdowns}invalid-commentvalue-error1.md`, complete);
     });
 });

@@ -6,7 +6,6 @@ const getAssertForValueInComment = require('./getAssertForValueInComment');
 const separator = ' --> ',
       ifWhileForStatementPattern = /^(if|while|for)/,
       conditionalOperatorPattern = /.+=.+\?.+:.+/;
-
       
 //Passed to String.prototype.replace() via bind()
 function replaceWithSimpleAssert(line, code) { 
@@ -28,7 +27,6 @@ const equalityOperators = {
         operation: replaceWithSimpleAssert
     };
 
-
 const valueInComment = {
     pattern: /^([^/;]+);?\s*\/\/(.+)$/,
     message: 'Inline comment didn\'t display value of preceeding expression',
@@ -39,7 +37,6 @@ const valueInComment = {
         return getAssertForValueInComment(line, code, commentValue, this.message, separator);
     }
 };
-
 
 const insertAssertOperations = [
     equalityOperators,
@@ -58,7 +55,6 @@ function insertAsserts(lines) {
     });
 }
 
-
 function getCodeWithTests(snippet) {
     let lines;
     snippet = helpers.removeMultiLineComments(snippet);
@@ -69,6 +65,5 @@ function getCodeWithTests(snippet) {
     lines = lines.map(line => line + '\n');
     return lines.join('');
 }
-
 
 module.exports = getCodeWithTests;

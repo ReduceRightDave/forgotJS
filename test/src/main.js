@@ -6,6 +6,8 @@ const vdom = require('remark-vdom');
 const fs = require('fs');
 const $ = require('vdom-query');
 
+const InvalidCommentValueError = require('./helpers').InvalidCommentValueError;
+const UnsupportedFeatureError = require('./helpers').UnsupportedFeatureError;
 const getCodeWithTests = require('./getCodeWithTests.js');
 
 //Make assert() available Function(  here  )()
@@ -25,6 +27,10 @@ function main(headings, codeElements, callback) {
             codeSnippet = codeElements[i];
         let codeWithTests;
         
+        if (heading.includes("\\") || codeSnippet.includes("\\")) {
+            return callback(false, heading, 'UnsupportedFeatureError', 'Can\'t yet handle backslashes');
+        }
+
         //Let the Node compiler check the snippet for errors
         try {
             runCode(codeSnippet);
@@ -32,23 +38,30 @@ function main(headings, codeElements, callback) {
             return callback(false, heading, error.name, error.message);
         }
 
-        codeWithTests = getCodeWithTests(codeSnippet);
-        // console.log(codeWithTests);
+        try {
+            codeWithTests = getCodeWithTests(codeSnippet);
+        } catch (error) {
+            if (error instanceof InvalidCommentValueError) {
+                return callback(false, heading, 'InvalidCommentValueError', error.message);
+            } else if (error instanceof UnsupportedFeatureError) {
+                return callback(false, heading, 'UnsupportedFeatureError', error.message);
+            } else {
+                throw new Error(`Unexpected error ${error.name} in "${heading}":\n${error.message}`);
+            }
+        }
 
         //Run the tests
         try {
             runCode(codeWithTests);
         } catch (error) {
-            /*  If we get this far then any SyntaxError must be a //commentValue
-                in the wrong place eg 
-                if (true) { //[] 
-            
-                or an assertion error from a test not passing.
-            */
-
             if (error instanceof SyntaxError) {
-                return callback(false, heading, 'ImproperlyPlacedCommentError', 'Inline comment not allowed here');
+                const syntaxErrorMessage = 'Inline comment not allowed here -check that first.\n(It\'s also possible that the test generation code is broken)';
+                /* ImproperlyPlacedCommentError is a commentValue in the wrong place eg 
+                   if (true) { //[]
+                */
+                return callback(false, heading, 'SyntaxError: Probably ImproperlyPlacedCommentError', syntaxErrorMessage);
             } else if (error instanceof assert.AssertionError) {
+                //Assertion error from a test not passing
                 return callback(false, heading, 'AssertionError', error.message);
             } else {
                 throw new Error(`Unexpected error ${error.name} in "${heading}":\n${error.message}`);
@@ -60,8 +73,7 @@ function main(headings, codeElements, callback) {
     return callback(true);
 }
 
-
-function checkSyntaxAddAndRunTests(filePath, callback) {
+function checkSyntaxAndRunTests(filePath, callback) {
     unified()
         .use(markdown)
         .use(vdom)
@@ -75,7 +87,6 @@ function checkSyntaxAddAndRunTests(filePath, callback) {
 
             main(headings, codeElements, callback);
         });
-
 }
 
-module.exports = checkSyntaxAddAndRunTests;
+module.exports = checkSyntaxAndRunTests;

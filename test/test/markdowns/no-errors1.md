@@ -23,11 +23,19 @@ Foo intro
 
 let a = 42
 a //42
+a === 42
+
+let u;
+u === undefined
+u //undefined
 
 function f() {
   return 1;
 }
 f(); //1
+
+const f1 = function a() {return 1}
+f1 //  function a() { return 1 }
 
 new RegExp("'") // /'/
 
@@ -37,9 +45,9 @@ const arr = [3,2,1]
 arr //  [   3,2   ,    1    ]
 
 // needs the ;
-;(function(){return [1,2,8]})() //[1, 2, 8]
-// needs the ;
-;[1, 2, ...[3, 4]] //[1,2,3,4]  
+;(function(){return [1,2,8]})(); //[1, 2, 8]
+
+[1, 2, ...[3, 4]] //[1,2,3,4]  
 
 // if (true) { //[]
 // }
@@ -48,11 +56,17 @@ arr //  [   3,2   ,    1    ]
 over several 
 lines 1 === 1 */
 
-/* Where a // comment lives on the same line as an expression containing
-a comparison operator, the value the comment displays should be tested. */
+/* Where a comment value lives on the same line as an expression containing
+a comparison operator, there should be no error. (The comment value has precedence). */
 2 != 3 //true
 
-1 == 1 ? 'foo' : 'baz' // foo
+1 == 1 ? 'foo' : 'baz' // 'foo'
+
+let str = '1234'
+str //'1234'
+
+var singleQuote = "don't"
+singleQuote //"don't"
 
 if (isNaN(NaN)) console.log()
 
@@ -65,37 +79,4 @@ let ob = {
     }
 }
 ob['b']['c'] === 1
-```
-
-
-## Strings
-
-```javascript
-
-let strAlpha = 'hi'
-strAlpha //hi
-
-let strNum = '1234'
-strNum //1234
-
-const twoWords = "two words"
-twoWords //two words
-
-const multiWordString = 'multiple word string'
-multiWordString //multiple word string
-
-var singleQuote0 = "'"
-singleQuote0 //'
-
-var singleQuote1 = "don't"
-singleQuote1 //don't
-
-var singleQuote2 = 'don\'t\''
-singleQuote2 //don't'
-
-let singleQuote3 = '`\'foo\'`'
-singleQuote3 //`'foo'`
-
-var doubleQuote0 = '"'
-doubleQuote0 //"
 ```

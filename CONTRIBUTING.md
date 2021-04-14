@@ -1,7 +1,7 @@
 # Contributing
 
 ## Testing
-Some experimental CI tests run on CircleCI. The JavaScript snippets are extracted from the 
+Experimental continuous integration tests run on Github Actions. The JavaScript snippets are extracted from the 
 README markdown document, run through the Node compiler to check for syntax 
 and other errors, and then assertions are added as below.
 
@@ -60,15 +60,15 @@ if (a === b) { //42
 ## Scripts
 
 On pull request, along with the tests above, the routines that generate these 
-tests are tested (`yarn test` as below).
+tests are themselves tested (Github Actions runs `npm test`).
 
-To run the tests locally, [NodeJS](http://nodejs.org) and [Yarn](http://yarnpkg.com) 
-are required. CircleCI is configured to run Node 10.12.0.
+To run the tests locally, [NodeJS](http://nodejs.org) and [NPM](https://www.npmjs.com/get-npm) 
+are required. Github Actions is configured to run the tests on a variety of Node versions.
 
 Available scripts:
-* `yarn test-readme` tests README.md
-* `yarn verify-test-generation` checks the test generation routines
-* `yarn test` tests everything
+* `npm run test-readme` tests README.md
+* `npm run verify-test-generation` checks the test generation routines
+* `npm test` runs both of the above
 
 
 

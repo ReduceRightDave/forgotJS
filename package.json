@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Notes in JavaScript.",
   "devDependencies": {
-    "jest": "^23.6.0",
+    "jest": "^26.6.3",
     "remark-parse": "^5.0.0",
     "remark-vdom": "^6.0.0",
     "unified": "^7.0.0",

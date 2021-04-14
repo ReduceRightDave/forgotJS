@@ -70,7 +70,7 @@ Number.isNaN(Number('wont work either'))
 'use strict' for individuals functions, or for a whole module in Node. */
 function goodPractice() {
     'use strict';
-    //Things like: implicit global variables are disallowed -see later
+    //Things like: implicit global variables are disallowed
 }
 ```
 
@@ -217,7 +217,7 @@ Number.isNaN(Number(undefined))
 ```javascript
 //Declaration but no assignment
 let x;
-x === undefined
+x //undefined
 
 /* They sound kinda the same but best to leave undefined for the engine to use 
 (as a placeholder -as above). If *we* want to set "no value", use null. */
@@ -232,7 +232,7 @@ document!). */
 function f(a, b) {
     return b
 }
-f(1) === undefined
+f(1) //undefined
 ```
 
 
@@ -351,8 +351,8 @@ n.toString(36) === 'zzz'
 //parseInt gets a number from a string
 parseInt('zzz', 36) === n
 
-//magic
-37439508
+n = 37439508
+n.toString(36) //'magic'
 ```
 
 
@@ -567,12 +567,12 @@ const s = new String('my string')
 ## Missing keys
 
 ```javascript
-//Wrong property name? No problem! (exception)
+//Wrong property name? No problem/exception!
 
 let ob = {}
 //undefined instead of an error
-ob.a === undefined 
-ob['a'] === undefined 
+ob.a //undefined 
+ob['a'] //undefined 
 //(Python gives KeyError)
 
 //whereas
@@ -580,7 +580,7 @@ ob['a'] === undefined
 
 //Arrays are actually objects, with integers as keys 
 let arr = []
-arr[10] === undefined
+arr[10] //undefined
 ```
 
 
@@ -734,7 +734,7 @@ outer.inner.a === 2
 
 
 
-## Equality, identity, === again
+## Equality, identity, and === again
 
 ```javascript
 //For primitive types, equality compares the values
@@ -845,7 +845,7 @@ nums //[1,2]
 ## Sorting arrays
 
 ```javascript
-var arr;
+let arr
 
 //By default, works fine for strings
 arr = ['m','z','a']
@@ -1172,7 +1172,7 @@ function statement, rather a function expression. */
 ```javascript
 // Variables and function statements being available when you wouldn't expect
 
-foo === undefined
+foo //undefined
 var foo = 1 
 //although let instead of var gives ReferenceError
 
@@ -1188,7 +1188,7 @@ During compilation, all variable and function declarations are found and process
 Then, during execution, assignments are dealt with.
 */
 
-i === undefined 
+i //undefined 
 //(rather than ReferenceError)
 
 //As above, doesn't work with let

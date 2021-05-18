@@ -1,9 +1,7 @@
 # Contributing
 
 ## Testing
-Experimental continuous integration tests run on Github Actions. The JavaScript snippets are extracted from the 
-README markdown document, run through the Node compiler to check for syntax 
-and other errors, and then assertions are added as below.
+Experimental continuous integration tests run on Github Actions. The JavaScript snippets are extracted from the README markdown document, run through the Node compiler to check for syntax and other errors, and then assertions are added as below.
 
 In simplified terms, when on its own line 
 
@@ -27,8 +25,7 @@ assert(isNaN(x));
 
 ## Comment Values
 
-Comments starting with // on the same line as code should display the value of the 
-preceeding expression. What you might call *comment values*:
+Comments starting with // on the same line as code should display the value of the preceeding expression. What you might call *comment values*:
 
 ```javascript
 x //'baz'
@@ -51,8 +48,7 @@ assert.deepStrictEqual(a, [1,2,3]);
 
 Comment values should be single, valid literals, on one line. They can be `true`, `false`, `null`, `undefined`, number, string, regex literal, object literal, array literal or function. An `InvalidCommentValueError` may otherwise be thrown.
 
-Because of comment values, there is a restriction on where // comments can be placed. 
-Eg this generates an `ImproperlyPlacedCommentError`:
+Because of comment values, there is a restriction on where // comments can be placed. Eg this generates an `ImproperlyPlacedCommentError`:
 
 ```javascript
 if (a === b) { //42
@@ -61,11 +57,9 @@ if (a === b) { //42
 
 ## Scripts
 
-On pull request, along with the tests above, the routines that generate these 
-tests are themselves tested (Github Actions runs `npm test`).
+On pull request, along with the tests above, the routines that generate these tests are themselves tested (Github Actions runs `npm test`).
 
-To run the tests locally, [NodeJS](http://nodejs.org) and [NPM](https://www.npmjs.com/get-npm) 
-are required, although the preferable way is to use Docker instead: `docker-compose up`
+To run the tests locally, [NodeJS](http://nodejs.org) and [NPM](https://www.npmjs.com/get-npm) are required, although the preferable way is to use Docker instead: `docker-compose up`
 
 Github Actions is configured to run the tests on a variety of Node versions.
 
@@ -79,8 +73,7 @@ Available scripts:
 
 ## Precedence
 
-In the event that a line to be turned into a test contains say, both `===` and a 
-comment value, comment value tests always have the highest precedence. So 
+In the event that a line to be turned into a test contains say, both `===` and a comment value, comment value tests always have the highest precedence. So 
 
 ```javascript
 isNaN(1) //foo

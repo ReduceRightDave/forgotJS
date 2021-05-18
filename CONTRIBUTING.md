@@ -65,12 +65,15 @@ On pull request, along with the tests above, the routines that generate these
 tests are themselves tested (Github Actions runs `npm test`).
 
 To run the tests locally, [NodeJS](http://nodejs.org) and [NPM](https://www.npmjs.com/get-npm) 
-are required. Github Actions is configured to run the tests on a variety of Node versions.
+are required, although the preferable way is to use Docker instead: `docker-compose up`
+
+Github Actions is configured to run the tests on a variety of Node versions.
 
 Available scripts:
 * `npm run test-readme` tests README.md
 * `npm run verify-test-generation` checks the test generation routines
 * `npm test` runs both of the above
+* `npm run monitor-readme` monitors README.md for changes and re-tests it. (Used by the Docker container)
 
 
 

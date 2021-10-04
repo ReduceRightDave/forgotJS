@@ -845,6 +845,8 @@ nums //[1,2]
 ## Sorting arrays
 
 ```javascript
+//The array sort() method sorts in place -does not produce a new array
+
 let arr
 
 //By default, works fine for strings

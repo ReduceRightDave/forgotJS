@@ -104,6 +104,27 @@ name.length === 6
 ```
 
 
+## Which string is higher?
+
+```javascript
+'a' < 'b' === true
+'anonymous' < 'belly' === true
+'c' < 'b' === false
+'z' > 'm' === true
+
+//Because ASCII
+//caps before lower
+'B' < 'a' 
+//numbers first
+'1' < 'A' 
+
+'1' < '2'
+'111' < '2'
+
+//works similarly in Python
+```
+
+
 ## Arithmetic operators do type conversion
 
 ```javascript
@@ -233,27 +254,6 @@ function f(a, b) {
     return b
 }
 f(1) //undefined
-```
-
-
-## Which string is higher?
-
-```javascript
-'a' < 'b' === true
-'anonymous' < 'belly' === true
-'c' < 'b' === false
-'z' > 'm' === true
-
-//Because ASCII
-//caps before lower
-'B' < 'a' 
-//numbers first
-'1' < 'A' 
-
-'1' < '2'
-'111' < '2'
-
-//works similarly in Python
 ```
 
 

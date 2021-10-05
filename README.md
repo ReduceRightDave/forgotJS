@@ -909,34 +909,6 @@ arr //[[1, 'A'], [2], [3]]
 arr[0] === copy[0] 
 ```
 
-
-
-
-## JSON
-
-```javascript
-/*
-JSON is a text interchange format -the payload of e.g. an AJAX response.
-Based on object literal syntax. 
-
-Remember to double quote all keys and strings.
-*/
-
-let myData_parsed = {
-    "people": ["Sauron", "Smeagol"]
-}
-let myData_serialised = '{"people":["Sauron","Smeagol"]}'
-
-/*Convert between parsed and serialised versions with built-in methods
--no need for eval() */
-JSON.stringify(myData_parsed) === myData_serialised
-JSON.parse(myData_serialised).people[1] === 'Smeagol'
-```
-
-
-
-
-
 ## Arguments
 
 ```javascript
@@ -981,6 +953,28 @@ const split = [...'abc']
 split //['a', 'b', 'c']
 ```
 
+
+
+## JSON
+
+```javascript
+/*
+JSON is a text interchange format -the payload of e.g. an AJAX response.
+Based on object literal syntax. 
+
+Remember to double quote all keys and strings.
+*/
+
+let myData_parsed = {
+    "people": ["Sauron", "Smeagol"]
+}
+let myData_serialised = '{"people":["Sauron","Smeagol"]}'
+
+/*Convert between parsed and serialised versions with built-in methods
+-no need for eval() */
+JSON.stringify(myData_parsed) === myData_serialised
+JSON.parse(myData_serialised).people[1] === 'Smeagol'
+```
 
 
 

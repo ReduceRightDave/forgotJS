@@ -189,18 +189,18 @@ Number('') === 0
 0 === +null
 0 === +[]
 
-//same as the parseInt and parseFloat built-in functions for numbers
+//same results as the parseInt and parseFloat built-in functions for numbers
 +'4' === parseInt('4', 10) 
 //second param is radix (base)
 +'9.9' === parseFloat('9.9', 10)
 
-//but different for weird stuff
+//but different for the weird stuff
 parseInt(null, 10) !== +null
 //rather
 Number.isNaN(parseInt(null, 10))
 Number.isNaN(parseFloat([], 10))
 
-//+ gives the value NaN when it doesn't work
+//That said, + does give the value NaN when it doesn't work
 isNaN(+'cant be a number')
 Number.isNaN(+'cant be a number')
 ```

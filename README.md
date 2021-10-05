@@ -498,8 +498,8 @@ with forEach() or for...of). */
 /*
 *Any* value that is not a primitive.
 
-The primitives are: string, number, boolean, null, undefined, symbol which are all 
-immutable, single values. Some have methods, but they are still classed as primitives.
+The primitive types are: string, number, boolean, null, undefined, symbol. They are all 
+immutable, single values. Some have methods, but they are still categorised as primitives.
 
 Whereas objects are mutable collections of key/value pairs (aka properties). 
 

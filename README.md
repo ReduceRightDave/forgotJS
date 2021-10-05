@@ -795,7 +795,7 @@ words.language = 'English'
 ```javascript
 const nums = [4,3,2,0]
 
-//map() applies a function to each element to produce a new array
+//map() applies the function you supply to each element to produce a new array
 const square = function(x) {return x * x}
 nums.map(square) //[16,9,4,0]
 const roots = [16,9].map(Math.sqrt)
@@ -818,7 +818,10 @@ nums.some(x => x > 2) //true
 
 /* reduce() produces a single value from an array, 
 according to the supplied reducer function */
-nums.reduce((accumulator, currentValue) => accumulator + currentValue) //9
+nums.reduce((accumulator, currentElement) => accumulator + currentElement) //9
+//The value returned from the supplied function becomes the next call's accumulator
+
+//Use reduceRight() to instead work from right to left
 
 //See also forEach()
 ```

@@ -982,12 +982,12 @@ JSON.parse(myData_serialised).people[1] === 'Smeagol'
 ## Function statements vs. function expressions
 
 ```javascript
-//A function statement (which is subject to hoisting):
+//A function statement/declaration/definition (which is subject to hoisting)
 function square(x) { 
     return x * x 
 }
 
-//Function expression
+//Function expression (not subject to hoisting)
 let f = function(x) {
     return x * x;
 };
@@ -999,7 +999,8 @@ f = function square(x) {
 }
 
 //arrow function equivalent
-f = x => x * x 
+f = x => x * x
+//Arrow functions with no curly braces have explicit return
 ```
 
 

@@ -613,6 +613,8 @@ const newGeneration = Object.create(offspring)
 newGeneration.doDance = () => 'soz, too busy with smartphone'
 
 parent.isPrototypeOf(newGeneration)
+
+//The newer JavaScript class inheritance syntax is syntantic sugar for this prototype-based system.
 ```
 
 

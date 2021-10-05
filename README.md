@@ -673,7 +673,7 @@ output.includes('two: to') === true
 //See also Object.keys() and Object.getOwnPropertyNames()
 ```
 
-## Not in but of
+## Not in, but of
 
 ```javascript
 //for...of loops over iterables -eg strings, arrays

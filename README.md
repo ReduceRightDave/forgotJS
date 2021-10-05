@@ -1040,7 +1040,7 @@ f('6') === 6
 //the same as
 Number('6') === 6
 
-//Pass a function to a function (map)
+//Pass a function to a function (in this case, Array's map method)
 function addOne(n){ return n+1 }
 let newArray = [0,5].map(addOne)
 newArray //[1,6]
